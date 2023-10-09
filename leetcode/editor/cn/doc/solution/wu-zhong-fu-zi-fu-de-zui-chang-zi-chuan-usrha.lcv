@@ -1,0 +1,32 @@
+### 解题思路
+
+* containsKey 检查map中是否有key
+
+时间复杂度n
+空间复杂度1
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s.length()==0) return 0;
+        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+        int max=0;
+        int left=0;
+        int right=0;
+        for(;right<s.length();right++){
+            if(map.containsKey(s.charAt(right))){
+                left = Math.max(left,map.get(s.charAt(right))+1);
+            }
+            map.put(s.charAt(right),right);
+            max=Math.max(max,right-left+1);
+        }
+        return max;
+    }
+
+}
+```
+

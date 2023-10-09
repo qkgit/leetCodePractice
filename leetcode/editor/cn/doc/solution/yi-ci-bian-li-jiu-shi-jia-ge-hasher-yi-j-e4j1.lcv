@@ -1,0 +1,22 @@
+* pgsql
+
+```pgsql
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int []hash=new int [130];
+        int start=0,count=0;
+        for(int i=0;i<s.length();i++){            //从左遍历每个字符串
+            if(hash[s.charAt(i)]-1<start){
+                count=Math.max(i-start+1,count); //如果该字符串，未重复，hash记住该值位置，同时计算长度
+                hash[s.charAt(i)]=i+1;
+            }else{
+                start=hash[s.charAt(i)]; //如果重复了，将start移至重复值，索引后一个
+                hash[s.charAt(i)]=i+1;
+            }
+        }
+        return count;
+    }
+}
+```
+

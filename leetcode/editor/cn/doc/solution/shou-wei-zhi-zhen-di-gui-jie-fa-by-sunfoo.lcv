@@ -1,0 +1,44 @@
+首尾各一个指针用于遍历，优点是如果结果数组长度为奇数，可以省掉位于中间的元素的遍历；
+
+* c++
+
+```c++
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i = 0;
+        (void)removeDuplicates(nums, i, 0, nums.size() - 1);
+        nums.erase(nums.begin() + i, nums.end());
+        return i;
+    }
+
+private:
+    void removeDuplicates(vector<int>& nums, int& i, int i2front, int i2back) {
+        if(i2front > i2back) {
+            return;
+        }
+
+        int front = nums[i2front];
+        int back = nums[i2back];
+
+        nums[i++] = front;
+
+        if(front == back) {
+            return;
+        }
+
+        while(front == nums[i2front]) {
+            ++i2front;
+        }
+
+        while(back == nums[i2back]) {
+            --i2back;
+        }
+
+        (void)removeDuplicates(nums, i, i2front, i2back);
+
+        nums[i++] = back;
+    }
+};
+```
+

@@ -1,0 +1,65 @@
+### 解题思路
+
+此处撰写解题思路
+1.与整数反转代码类似。
+2.首先若x小于0，返回false；
+3.大于0 则判断反转后的数是否相等即可。
+
+### 代码
+
+* java
+
+```java
+import java.util.Arrays;
+import java.util.Scanner;
+class Solution{
+    public boolean isPalindrome(int x) {
+        int t = 1;
+        int sum = x;
+        int chu = x;
+        int mul = 0;
+        int k = 1;
+        if (x < 0) {
+            return false;
+        } else {
+            //判断位数
+            while (x / 10 != 0) {
+                t++;
+                x = x / 10;
+            }
+            //  System.out.println("位数：" + t);
+            int[] a = new int[t];
+            for (int i = 0; i < t; i++) {
+                a[i] = sum % 10;
+                sum = (sum - a[i]) / 10;
+                //  a[i] = (int)Math.round(x/(Math.pow(10,j)));
+                //   x = x - a[i];
+                // System.out.print(a[i]+"\n");
+            }
+            // System.out.println(Arrays.toString(a));//输出数组元素
+            for (int i = 0; i < t; i++) {
+                k = 1;
+                for (int j = i; j < t - 1; j++) {
+                    k = k * 10;
+                }
+                mul = mul + k * a[i];
+            }
+            if (mul == chu) {
+            return true ;
+            }
+           else
+              return false;
+        }
+    }
+    public static void main(String[] args) {
+        System.out.println("请输入你所设置的数字：");
+        Scanner input = new Scanner(System.in);
+        int s = input.nextInt();
+        Solution sample3 = new Solution();
+        boolean p = sample3.isPalindrome(s);
+        System.out.println(p);
+
+    }
+}
+```
+

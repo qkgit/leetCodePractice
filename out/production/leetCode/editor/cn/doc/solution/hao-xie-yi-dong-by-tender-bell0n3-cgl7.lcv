@@ -1,0 +1,32 @@
+### 解题思路
+
+此处撰写解题思路
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0){//负数直接返回false
+            return false;
+        }
+        if(x>=0&&x<=9){//个位数直接返回true
+            return true;
+        }
+        int sum=0,t=0,demo=x;
+        while(demo!=0){//本循环体就是经典获取整数倒置的方法
+            t=demo%10;
+            sum=sum*10+t;
+            demo/=10;
+        }
+        if(sum==x){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+```
+
